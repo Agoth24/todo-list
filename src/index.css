@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+}
+
+:root {
+--light-bg: #F9FAF8;
+
+
+}
+
+header {
+    text-align: center;
+}
