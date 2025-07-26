@@ -8,11 +8,14 @@
   --light-navy: #1e6091;
   --dark-navy: #184e77;
   --white: #ffffff;
+  --red: #EF2917;
+  --yellow: #ECC30B;
+  --green: #23CE6B;
 }
 
 @font-face {
   font-family: "oswald";
-  src: url(./fonts/oswald/Oswald-Regular.ttf) format("ttf");
+  src: url(../fonts/oswald/Oswald-Regular.ttf) format("ttf");
 }
 
 body,
@@ -21,6 +24,11 @@ html {
   background-color: var(--light-bg);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  height: 100vh;
+}
+h1, h2, p {
+  margin: 0;
+  line-height: 1;
 }
 
 /* START OF HEADER */
@@ -31,6 +39,7 @@ header {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--light-grey);
+  background-color: var(--white);
 }
 
 .logo {
@@ -54,14 +63,51 @@ header {
 /* END OF HEADER */
 
 #content {
-  display: flex;
-  padding: 1rem 5rem;
-  gap: 1rem;
+  display: grid;
+  padding: 1rem 2rem;
+  gap: 1rem 2rem;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+}
+.todo-title, .projects-title {
+  grid-row: 1;
+  justify-self: center;
+}
+
+.projects-section {
+  background-color: var(--light-grey);
 }
 
 .todo-card {
   background-color: var(--white);
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 1rem 2rem;
   border: 1px solid var(--light-grey);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-info {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  height: max-content;
+}
+
+input[type="checkbox"] {
+  width: 1.5rem;
+}
+
+.remove-card-btn {
+  all: unset;
+  background-color: var(--red);
+  color: var(--white);
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  margin-left: auto;
+}
+
+.remove-card-btn:hover {
+  cursor: pointer;
 }
