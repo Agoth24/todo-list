@@ -6,6 +6,7 @@
   --light-bg: #f9faf8;
   --light-grey: #dee2e6;
   --light-navy: #1e6091;
+  --dark-navy: #184e77;
   --white: #ffffff;
 }
 
@@ -13,6 +14,7 @@
   font-family: "oswald";
   src: url(./fonts/oswald/Oswald-Regular.ttf) format("ttf");
 }
+
 body,
 html {
   margin: 0;
@@ -21,34 +23,18 @@ html {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+/* START OF HEADER */
+
 header {
-  display: grid;
-  padding: 1rem 0;
-  grid-template-columns: 1fr 3fr;
+  display: flex;
+  padding: 1rem 5rem;
+  justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--light-grey);
 }
 
 .logo {
   margin: 0;
-  text-align: center;
-}
-
-form {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: 1fr;
-  gap: 2rem;
-  align-items: center;
-  padding-right: 5rem;
-}
-
-.todo-input {
-  all: unset;
-  background-color: var(--light-grey);
-  height: 2.5rem;
-  padding: 0 1em;
-  border-radius: 0.5em;
 }
 
 .add-item {
@@ -58,8 +44,24 @@ form {
   padding: 0 2rem;
   height: 2.5rem;
   border-radius: 0.5rem;
+  width: max-content;
 }
 
 .add-item:hover {
-    cursor: pointer;
+  cursor: pointer;
+  background-color: var(--dark-navy);
+}
+/* END OF HEADER */
+
+#content {
+  display: flex;
+  padding: 1rem 5rem;
+  gap: 1rem;
+}
+
+.todo-card {
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--light-grey);
 }

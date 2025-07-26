@@ -7,11 +7,50 @@
   </head>
   <body>
     <header>
-        <h1 class="logo">To-Do App</h1>
-    <form>
-      <input type="text" class="todo-input">
-      <button class="add-item">Add Item</button>
-    </form>
+      <h1 class="logo">To-Do App</h1>
+      <button class="add-item">New Item</button>
     </header>
+    <div id="content">
+      <div class="todo-card">
+
+      </div>
+    </div>
+
+    <div id="popup-form" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+          <form action="#" method="post">
+              <div class="form-group">
+                  <label for="title">Task:</label>
+                  <input type="text" id="title" />
+                </div>
+                <div class="form-group" class="description">
+                    <label for="description"> Description:</label>
+                    <textarea name="description" id="description"></textarea>
+                </div>
+          <div class="form-group">
+              <label for="dueDate"> Due Date</label>
+              <input
+              type="date"
+              name="dueDate"
+              id="dueDate"
+              placeholder="MM / DD / YYYY"
+              required
+              />
+            </div>
+            <div class="form-group">
+                <label for="priority">Priority:</label>
+                <select name="priority" id="priority">
+                    <option value="high">High</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+            <div class="form-buttons">
+                <button type="button" class="modal-back-btn">Back</button>
+                <button type="submit" class="form-submit-btn">Add to List</button>
+            </div>
+        </form>
+    </div>
   </body>
 </html>
