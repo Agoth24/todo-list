@@ -60,7 +60,7 @@ textarea {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-input,
+.form-group input,
 textarea,
 select {
   border-radius: 0.5rem;

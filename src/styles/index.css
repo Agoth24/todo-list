@@ -66,7 +66,7 @@ header {
   display: grid;
   padding: 1rem 2rem;
   gap: 1rem 2rem;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 2fr;
   grid-template-rows: auto 1fr;
   height: 100%;
 }
@@ -77,6 +77,34 @@ header {
 
 .projects-section {
   background-color: var(--light-grey);
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+.selected {
+  background-color: var(--light-navy);
+  color: var(--white);
+}
+
+input#project-name {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--light-grey);
+  outline-style: none;
+  font-size: 1.25em;
+  background-color: transparent;
+  transition: 0.1s ease;
+}
+
+input#project-name:focus {
+  border-bottom: 2px solid var(--light-navy);
+  outline: none;
+}
+
+.project-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .todo-card {
