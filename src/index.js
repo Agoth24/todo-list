@@ -3,6 +3,7 @@ import "./styles/modal.css";
 import createToDoItem from "./createTodoItem";
 import renderTodoList from "./renderTodoList";
 import deleteTodoById from "./deleteTodo";
+
 const toDoList = [];
 const modal = document.querySelector("#popup-form");
 
