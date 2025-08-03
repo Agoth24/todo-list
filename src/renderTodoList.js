@@ -1,9 +1,9 @@
 import createTodoCard from "./createTodoCard";
 
-export default function renderTodoList(toDoList, section, onRemove) {
+export default function renderTodoList(todos, section, onRemove) {
   section.replaceChildren();
 
-  toDoList.forEach((item) => {
+  todos.forEach((item) => {
     const card = createTodoCard(item, onRemove);
     section.appendChild(card);
   });

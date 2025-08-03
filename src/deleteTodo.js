@@ -1,6 +1,6 @@
-export default function deleteTodoById(id, toDoList ) {
-    const index = toDoList.findIndex((todo) => todo.id == id)
-    if (index !== -1) {
-        toDoList.splice(index, 1)
-    }
+export default function deleteTodoById(id, todos) {
+  const index = todos.findIndex((todo) => todo.id == id);
+  if (index !== -1) {
+    todos.splice(index, 1);
+  }
 }

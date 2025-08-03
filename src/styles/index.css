@@ -80,12 +80,13 @@ header {
   border-radius: 0.5rem;
   padding: 2rem;
 }
+
+
 .selected {
-  background-color: var(--light-navy);
-  color: var(--white);
+  color: var(--dark-navy);
 }
 
-input#project-name {
+input#project-name, .project-item {
   width: 100%;
   padding: 0.5rem;
   border: 1px solid var(--light-grey);
