@@ -84,6 +84,18 @@ header {
 
 .selected {
   color: var(--dark-navy);
+  font-weight: 700;
+}
+
+.project-item:hover {
+  color: var(--dark-navy);
+  cursor: pointer;
+}
+
+.project-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 input#project-name, .project-item {
@@ -99,6 +111,15 @@ input#project-name, .project-item {
 input#project-name:focus {
   border-bottom: 2px solid var(--light-navy);
   outline: none;
+}
+
+.delete-project-btn {
+  all: unset;
+  font-size: 1.25em;
+  padding: 0 0.5em;
+  margin-left: 0.5em;
+  cursor: pointer;
+  color: inherit;
 }
 
 .project-list {
@@ -124,6 +145,16 @@ input#project-name:focus {
   height: max-content;
 }
 
+.due-date {
+  color: var(--dark-navy);
+  font-size: 0.9rem;
+  margin-left: 1rem;
+}
+
+.card-desc {
+  margin-top: 0.5rem;
+  margin-left: 3.5rem;
+}
 input[type="checkbox"] {
   width: 1.5rem;
 }

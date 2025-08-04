@@ -7,10 +7,22 @@ import renderProjects from "./renderProjects";
 
 // Initialize project list and event listeners
 const projects = [];
-let selectedProject = null
-const projectSection = document.querySelector(".project-section");
+let selectedProject = null;
 const projectList = document.querySelector(".project-list");
 const projectNameInput = document.querySelector("#project-name");
+
+// Handle project deletion
+window.handleProjectDelete = function(projectToDelete) {
+  const idx = projects.findIndex(p => p.id === projectToDelete.id);
+  if (idx !== -1) {
+    projects.splice(idx, 1);
+    if (selectedProject && selectedProject.id === projectToDelete.id) {
+      selectedProject = null;
+      renderTodoList([], toDoSection, handleDelete);
+    }
+    renderProjects(projects, projectList, handleProjectSelect);
+  }
+}
 
 projectNameInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
@@ -20,12 +32,12 @@ projectNameInput.addEventListener("keypress", (e) => {
     const newProject = {
       name: projectName,
       id: crypto.randomUUID(),
-      todos: [] // Initialize with an empty todos array
+      todos: [], // Initialize with an empty todos array
     };
     projects.push(newProject);
     renderProjects(projects, projectList, handleProjectSelect);
     if (!selectedProject) {
-        handleProjectSelect(newProject);
+      handleProjectSelect(newProject);
     }
     projectNameInput.value = ""; // Clear input
   }
@@ -37,7 +49,9 @@ renderProjects(projects, projectList, handleProjectSelect);
 const modal = document.querySelector("#popup-form");
 
 const addItemBtn = document.querySelector(".add-item");
-addItemBtn.addEventListener("click", toggleModal);
+addItemBtn.addEventListener("click", () => {
+  if (!selectedProject) return;
+  toggleModal()});
 
 const formCloseBtn = document.querySelector(".modal-back-btn");
 const toDoSection = document.querySelector(".todo-section");
@@ -51,9 +65,8 @@ form.addEventListener("submit", (e) => {
   const dataObject = Object.fromEntries(formData.entries());
   const todoItem = createToDoItem(dataObject);
 
- if (!selectedProject) return;
- selectedProject.todos.push(todoItem);
- renderTodoList(selectedProject.todos, toDoSection, handleDelete);
+  selectedProject.todos.push(todoItem);
+  renderTodoList(selectedProject.todos, toDoSection, handleDelete);
   toggleModal();
   form.reset();
 });
@@ -75,6 +88,6 @@ function handleDelete(id) {
 }
 
 function handleProjectSelect(project) {
-  selectedProject = project
-  renderTodoList(selectedProject.todos, toDoSection, handleDelete);
+  selectedProject = project;
+  renderTodoList(project ? project.todos : [], toDoSection, handleDelete);
 }

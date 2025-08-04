@@ -13,6 +13,9 @@ export default function createTodoCard(item, onRemove) {
   const title = document.createElement("h2");
   title.textContent = item.title;
 
+  const dueDate = document.createElement("span");
+  dueDate.textContent = item.dueDate ? `Due: ${item.dueDate}` : "";
+  dueDate.classList.add("due-date");
   const removeButton = document.createElement("button");
   removeButton.textContent = "Remove";
   removeButton.classList.add("remove-card-btn");
@@ -21,9 +24,10 @@ export default function createTodoCard(item, onRemove) {
     onRemove(item.id);
   });
 
-  cardInfo.append(checkBox, title, removeButton);
+  cardInfo.append(checkBox, title, dueDate, removeButton);
 
   const description = document.createElement("div");
+  description.classList.add("card-desc");
   const descText = document.createElement("p");
   descText.textContent = item.description;
   description.appendChild(descText);
