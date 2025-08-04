@@ -1,8 +1,14 @@
 export default function renderProjects(projects, section, onSelect) {
+  // Accept selectedProject as the 4th argument
+  const selectedProject = arguments[3];
   section.replaceChildren();
   projects.forEach((project) => {
     const div = document.createElement("div");
     div.classList.add("project-item");
+
+    if (selectedProject && selectedProject.id === project.id) {
+      div.classList.add("selected");
+    }
 
     const nameSpan = document.createElement("span");
     nameSpan.textContent = project.name;

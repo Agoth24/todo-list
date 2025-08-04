@@ -9,6 +9,7 @@ export default function createTodoCard(item, onRemove) {
   checkBox.type = "checkbox";
   checkBox.id = "completedBox";
   checkBox.name = "completedBox";
+  checkBox.checked = item.completed;
 
   const title = document.createElement("h2");
   title.textContent = item.title;
@@ -17,11 +18,32 @@ export default function createTodoCard(item, onRemove) {
   dueDate.textContent = item.dueDate ? `Due: ${item.dueDate}` : "";
   dueDate.classList.add("due-date");
   const removeButton = document.createElement("button");
-  removeButton.textContent = "Remove";
-  removeButton.classList.add("remove-card-btn");
+  removeButton.textContent = "✕";
+  removeButton.classList.add("delete-card-btn");
 
   removeButton.addEventListener("click", () => {
     onRemove(item.id);
+  });
+
+  // Strikethrough logic
+  if (item.completed) {
+    cardInfo.classList.add("completed");
+  }
+  function setCompleted(val) {
+    item.completed = val;
+    checkBox.checked = val;
+    cardInfo.classList.toggle("completed", val);
+    if (window.projects) {
+      localStorage.setItem("projects", JSON.stringify(window.projects));
+    }
+  }
+  checkBox.addEventListener("change", (e) => {
+    setCompleted(e.target.checked);
+  });
+  cardInfo.addEventListener("click", (e) => {
+    // Prevent toggling when clicking the delete button or checkbox itself
+    if (e.target === removeButton || e.target === checkBox) return;
+    setCompleted(!item.completed);
   });
 
   cardInfo.append(checkBox, title, dueDate, removeButton);

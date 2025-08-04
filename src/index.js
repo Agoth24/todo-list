@@ -7,6 +7,18 @@ import renderProjects from "./renderProjects";
 
 // Initialize project list and event listeners
 const projects = [];
+// Load projects from localStorage
+const savedProjects = localStorage.getItem("projects");
+if (savedProjects) {
+  try {
+    const parsed = JSON.parse(savedProjects);
+    if (Array.isArray(parsed)) {
+      projects.push(...parsed);
+    }
+  } catch (e) {
+    // Ignore parse errors
+  }
+}
 let selectedProject = null;
 const projectList = document.querySelector(".project-list");
 const projectNameInput = document.querySelector("#project-name");
@@ -16,11 +28,12 @@ window.handleProjectDelete = function(projectToDelete) {
   const idx = projects.findIndex(p => p.id === projectToDelete.id);
   if (idx !== -1) {
     projects.splice(idx, 1);
+    localStorage.setItem("projects", JSON.stringify(projects));
     if (selectedProject && selectedProject.id === projectToDelete.id) {
       selectedProject = null;
       renderTodoList([], toDoSection, handleDelete);
     }
-    renderProjects(projects, projectList, handleProjectSelect);
+    renderProjects(projects, projectList, handleProjectSelect, selectedProject);
   }
 }
 
@@ -35,15 +48,18 @@ projectNameInput.addEventListener("keypress", (e) => {
       todos: [], // Initialize with an empty todos array
     };
     projects.push(newProject);
-    renderProjects(projects, projectList, handleProjectSelect);
-    if (!selectedProject) {
+    localStorage.setItem("projects", JSON.stringify(projects));
+    renderProjects(projects, projectList, handleProjectSelect, selectedProject);
+    if (selectedProject) {
+      handleProjectSelect(selectedProject);
+    } else {
       handleProjectSelect(newProject);
     }
     projectNameInput.value = ""; // Clear input
   }
 });
 
-renderProjects(projects, projectList, handleProjectSelect);
+renderProjects(projects, projectList, handleProjectSelect, selectedProject);
 
 // Modal and form handling
 const modal = document.querySelector("#popup-form");
@@ -66,6 +82,7 @@ form.addEventListener("submit", (e) => {
   const todoItem = createToDoItem(dataObject);
 
   selectedProject.todos.push(todoItem);
+  localStorage.setItem("projects", JSON.stringify(projects));
   renderTodoList(selectedProject.todos, toDoSection, handleDelete);
   toggleModal();
   form.reset();
@@ -84,6 +101,7 @@ function toggleModal() {
 function handleDelete(id) {
   if (!selectedProject) return;
   deleteTodoById(id, selectedProject.todos);
+  localStorage.setItem("projects", JSON.stringify(projects));
   renderTodoList(selectedProject.todos, toDoSection, handleDelete);
 }
 

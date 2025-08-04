@@ -78,7 +78,7 @@ header {
 .projects-section {
   background-color: var(--light-grey);
   border-radius: 0.5rem;
-  padding: 2rem;
+  padding: 0 2rem;
 }
 
 
@@ -100,7 +100,7 @@ header {
 
 input#project-name, .project-item {
   width: 100%;
-  padding: 0.5rem;
+  padding-bottom: 0.5rem;
   border: 1px solid var(--light-grey);
   outline-style: none;
   font-size: 1.25em;
@@ -113,13 +113,19 @@ input#project-name:focus {
   outline: none;
 }
 
-.delete-project-btn {
+.delete-project-btn, .delete-card-btn {
   all: unset;
   font-size: 1.25em;
   padding: 0 0.5em;
-  margin-left: 0.5em;
+  margin-left: auto;
   cursor: pointer;
   color: inherit;
+}
+
+.delete-project-btn:hover, .delete-card-btn:hover {
+  color: var(--red);
+  border-radius: 50%;
+  justify-self: end;
 }
 
 .project-list {
@@ -140,9 +146,18 @@ input#project-name:focus {
 
 .card-info {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   align-items: center;
   height: max-content;
+}
+.card-info.completed > *:not(.delete-card-btn) {
+  text-decoration: line-through;
+  color: var(--dark-navy);
+  opacity: 0.7;
+}
+
+.card-info:hover {
+  cursor: pointer;
 }
 
 .due-date {
@@ -156,18 +171,12 @@ input#project-name:focus {
   margin-left: 3.5rem;
 }
 input[type="checkbox"] {
-  width: 1.5rem;
+  width: 2rem;
 }
 
-.remove-card-btn {
-  all: unset;
-  background-color: var(--red);
-  color: var(--white);
-  border-radius: 0.5rem;
-  padding: 0.25rem 0.5rem;
-  margin-left: auto;
+input[type="checkbox"]:checked {
+  background-color: var(--green);
 }
-
-.remove-card-btn:hover {
+input[type="checkbox"]:hover {
   cursor: pointer;
-}
+} 
